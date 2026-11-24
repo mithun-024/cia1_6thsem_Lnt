@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q7 - Fetch User Phone Number</title>
+</head>
 <body>
+    <h2>Q7: Fetch User 3 Phone Number</h2>
+    <p>Open Developer Tools (F12) -> Console to view the output.</p>
+
     <script>
         fetch("https://jsonplaceholder.typicode.com/users/3")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.phone);
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
             })
-            .catch(error => console.log(error));
+            .then(data => {
+                console.log("Phone Number:", data.phone);
+            })
+            .catch(error => {
+                console.error("Error occurred:", error.message);
+            });
     </script>
 </body>
 </html>
